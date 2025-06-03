@@ -92,4 +92,17 @@ penguins |>
 ```
 
 
+## Task 4
+
+### Question 1
+
+```{r}
+penguins |>
+  mutate(bill_length_mm = case_when(
+    (species == 'Adelie') & is.na(bill_length_mm) ~ 26,
+    (species == 'Gentoo') & is.na(bill_length_mm) ~ 30,
+    TRUE ~ bill_length_mm
+  ))
+```
+
 
