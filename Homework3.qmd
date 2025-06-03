@@ -1,0 +1,35 @@
+---
+title: "Programming in Base R"
+format: pdf
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Task 1
+
+### Question 1
+
+```{r}
+?read_csv
+```
+
+We cannot use read_csv specifically because our delimiter for the given data is a semicolon, not a comma. There is another function described in the help file called read_csv2 which uses the semicolon as a field separator, which we will need to use for the data.
+
+```{r}
+setwd("~/Desktop/ST558/Homework3/data")
+data <- read_csv2("data.txt")
+data
+```
+
+### Question 2
+
+```{r}
+setwd("~/Desktop/ST558/Homework3/data")
+data2 <- read_delim("data2.txt", delim = '6', col_types = "fdc")
+data2
+```
+
