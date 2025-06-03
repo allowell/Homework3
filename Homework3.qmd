@@ -69,4 +69,27 @@ trailblazer_longer |>
 Jusuf Nurkic, Robert Covington and Nassir Little were the top three players who scored more points at home than away throughout the first 10 games of the season.
 
 
+## Task 3
+
+### Question 1
+
+```{r}
+?penguins
+penguins |>
+  select(species, island, bill_length_mm) |>
+  pivot_wider(
+    names_from = island, values_from = bill_length_mm
+    )
+```
+We did not group by the species and island, so there are errors when we run this code since there are multiple values for bill_length_mm. <NULL> means that there are no penguins for that combination of species and island. <dbl [52]> means that for the Adelie species on Torgersen, there are 52 dbl values, so there are 52 different values of bill_length_mm for that group. <list> means that the column is a list since it is comprised of many dbls or null values.
+
+### Question 2
+```{r}
+penguins |>
+  group_by(species, island) |>
+  summarise(count = n()) |>
+  pivot_wider(names_from = island, values_from = count, values_fill = 0)
+```
+
+
 
