@@ -33,3 +33,40 @@ data2 <- read_delim("data2.txt", delim = '6', col_types = "fdc")
 data2
 ```
 
+
+## Task 2
+
+### Question 1
+
+```{r}
+setwd("~/Desktop/ST558/Homework3/data")
+trailblazer <- read_csv("trailblazer.csv")
+glimpse(trailblazer)
+```
+
+### Question 2
+
+```{r}
+trailblazer_longer <- trailblazer |>
+  pivot_longer(cols = 2:11, 
+               names_to = c('Game', 'Location'),
+               names_sep = '_',
+               values_to = 'Points')
+head(trailblazer_longer, 5)
+```
+
+### Question 3
+
+```{r}
+trailblazer_longer |>
+  pivot_wider(names_from = Location, values_from = Points) |>
+  group_by(Player) |>
+  mutate(mean_home = mean(Home, na.rm = T),
+         mean_away = mean(Away, na.rm = T),
+         diff = mean_home - mean_away) |>
+  arrange(desc(diff))
+```
+Jusuf Nurkic, Robert Covington and Nassir Little were the top three players who scored more points at home than away throughout the first 10 games of the season.
+
+
+
